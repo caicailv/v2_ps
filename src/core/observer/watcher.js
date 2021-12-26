@@ -22,6 +22,11 @@ let uid = 0
  * and fires callback when the expression value changes.
  * This is used for both the $watch() api and directives.
  */
+/**
+*观察者解析表达式，收集依赖项，
+*并在表达式值更改时激发回调。
+*这用于$watch（）api和指令。
+*/
 export default class Watcher {
   vm: Component;
   expression: string;

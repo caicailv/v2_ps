@@ -57,6 +57,8 @@ export function lifecycleMixin (Vue: Class<Component>) {
     vm._vnode = vnode
     // Vue.prototype.__patch__ is injected in entry points
     // based on the rendering backend used.
+    // Vue。原型__在入口点注入补丁
+    // 基于所使用的渲染后端。
     if (!prevVnode) {
       // initial render
       vm.$el = vm.__patch__(vm.$el, vnode, hydrating, false /* removeOnly */)
@@ -187,6 +189,9 @@ export function mountComponent (
   // we set this to vm._watcher inside the watcher's constructor
   // since the watcher's initial patch may call $forceUpdate (e.g. inside child
   // component's mounted hook), which relies on vm._watcher being already defined
+  // 我们将其设置为vm_观察者的构造函数中的观察者
+  // 因为观察者的初始补丁可能会调用$forceUpdate（例如，在child内部
+  // 组件的挂载挂钩），它依赖于虚拟机_正在定义观察者
   new Watcher(vm, updateComponent, noop, {
     before () {
       if (vm._isMounted) {

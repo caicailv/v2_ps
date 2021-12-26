@@ -1,5 +1,5 @@
 /* @flow */
-
+// 对浏览平操作dom api的一个封装
 import { namespaceMap } from 'web/util/index'
 
 export function createElement (tagName: string, vnode: VNode): Element {

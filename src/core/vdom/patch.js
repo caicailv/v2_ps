@@ -725,14 +725,20 @@ export function createPatchFunction (backend) {
           }
           // either not server-rendered, or hydration failed.
           // create an empty node and replace it
+          // 不是服务器渲染，就是水合作用失败。
+          // 创建一个空节点并替换它
+
+          // 把真实dom转化成vnode
           oldVnode = emptyNodeAt(oldVnode)
         }
 
         // replacing existing element
+        // 替换现有元素
         const oldElm = oldVnode.elm
         const parentElm = nodeOps.parentNode(oldElm)
 
         // create new node
+        // 把vnode挂载到真实dom
         createElm(
           vnode,
           insertedVnodeQueue,

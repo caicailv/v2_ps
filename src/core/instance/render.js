@@ -19,7 +19,7 @@ export function initRender (vm: Component) {
   vm._vnode = null // the root of the child tree
   vm._staticTrees = null // v-once cached trees
   const options = vm.$options
-  const parentVnode = vm.$vnode = options._parentVnode // the placeholder node in parent tree
+  const parentVnode = vm.$vnode = options._parentVnode // the placeholder node in parent tree 父树中的占位符节点
   const renderContext = parentVnode && parentVnode.context
   vm.$slots = resolveSlots(options._renderChildren, renderContext)
   vm.$scopedSlots = emptyObject
@@ -63,6 +63,7 @@ export function renderMixin (Vue: Class<Component>) {
     const { render, _parentVnode } = vm.$options
 
     // reset _rendered flag on slots for duplicate slot check
+    // 重置插槽上的渲染标志以进行重复插槽检查
     if (process.env.NODE_ENV !== 'production') {
       for (const key in vm.$slots) {
         // $flow-disable-line
@@ -76,6 +77,8 @@ export function renderMixin (Vue: Class<Component>) {
 
     // set parent vnode. this allows render functions to have access
     // to the data on the placeholder node.
+    // 设置父vnode。这允许渲染函数具有访问权限
+    // 添加到占位符节点上的数据。
     vm.$vnode = _parentVnode
     // render self
     let vnode

@@ -127,6 +127,7 @@ function initData (vm: Component) {
   const props = vm.$options.props
   const methods = vm.$options.methods
   let i = keys.length
+  // 此处处理, data和 methods和 props 不能重名
   while (i--) {
     const key = keys[i]
     if (process.env.NODE_ENV !== 'production') {
