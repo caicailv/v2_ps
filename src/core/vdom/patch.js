@@ -137,6 +137,11 @@ export function createPatchFunction (backend) {
       // potential patch errors down the road when it's used as an insertion
       // reference node. Instead, we clone the node on-demand before creating
       // associated DOM element for it.
+      // 此vnode已在以前的渲染中使用！
+      // 现在它被用作一个新节点，覆盖它的elm会导致
+      // 将其用作插入时可能出现的修补程序错误
+      // 引用节点。相反，我们在创建之前按需克隆节点
+      // 与之关联的DOM元素。
       vnode = ownerArray[index] = cloneVNode(vnode)
     }
 

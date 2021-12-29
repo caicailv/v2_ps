@@ -112,12 +112,15 @@ export function createComponent (
   const baseCtor = context.$options._base
 
   // plain options object: turn it into a constructor
+  // 普通选项对象：将其转换为构造函数
   if (isObject(Ctor)) {
     Ctor = baseCtor.extend(Ctor)
   }
 
   // if at this stage it's not a constructor or an async component factory,
   // reject.
+  // 如果在此阶段它不是构造函数或异步组件工厂，
+  // 拒绝。
   if (typeof Ctor !== 'function') {
     if (process.env.NODE_ENV !== 'production') {
       warn(`Invalid Component definition: ${String(Ctor)}`, context)
@@ -148,6 +151,7 @@ export function createComponent (
 
   // resolve constructor options in case global mixins are applied after
   // component constructor creation
+  // 在组件构造函数创建后应用全局混合的情况下解析构造函数选项
   resolveConstructorOptions(Ctor)
 
   // transform component v-model data into props & events
@@ -183,6 +187,7 @@ export function createComponent (
   }
 
   // install component management hooks onto the placeholder node
+  // 在占位符节点上安装组件管理挂钩
   installComponentHooks(data)
 
   // return a placeholder vnode
