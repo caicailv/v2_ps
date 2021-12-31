@@ -28,7 +28,7 @@ import {
 } from '../instance/lifecycle'
 
 import {
-  isRecyclableComponent,
+  isRecyclableComponent,v 
   renderRecyclableComponentTemplate
 } from 'weex/runtime/recycle-list/render-component-template'
 
