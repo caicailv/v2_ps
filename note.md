@@ -38,6 +38,16 @@ render 函数最终会调用 createElement 来创建 Vnode
 Vue.\_update 是一个 vue 私有函数,vue 初始化,和每次 render 时,都会调用 update,
 \_update 内部会调用 `Vue.__patch__`方法来做更新 dom 操作, 这个 patch,在不同的平台下,可以是不同的更新 api(weex),在 web 平台时,使用浏览器操作 dom 的 api 来更新 dom,`/src/platforms/web/runtime/patch`中,通过`createPatchFunction`方法来返回一个新的`patch函数`,
 
+
+### patch的整体流程
+createComponent -> 子组件初始化, ->子组件render -> 子组件patch,
+
+### Vue.options._base
+`Vue.options._base`是vue的构造函数
+
+
+
+
 ### get 到的一些小知识点
 
 1.可以直接引入文件,并导出引入的文件暴露的东西
@@ -79,4 +89,27 @@ function createPatchFunction({ nodeOps, modules }) {
 
 // 创建patch完成,再次调用时,函数内部已经判断完成了平台,无需再次判断
 export const patch: Function = createPatchFunction({ nodeOps, modules });
+```
+
+4. 驼峰化字符串
+```js
+  // keep-live   ->     keepLive
+  // 这里replace传的函数的参数 ,  与\w是否加括号有关
+const camelizeRE = /-(\w)/g
+const camelize = (str) => {
+  console.log('str->', str)
+  return str.replace(camelizeRE, (_, c) => (c ? c.toUpperCase() : ''))
+}
+
+// 对该函数的缓存
+
+function cached(fn) {
+  const cache = Object.create(null)
+  return function (str) {
+    if (cache[str]) return cache[str]
+    return (cache[str] = fn(str))
+  }
+}
+const camelizeCached = cached(camelize)
+
 ```

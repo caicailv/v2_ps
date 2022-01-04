@@ -245,6 +245,7 @@ const defaultStrat = function (parentVal: any, childVal: any): any {
 
 /**
  * Validate component names
+ * *验证组件名称
  */
 function checkComponents (options: Object) {
   for (const key in options.components) {
@@ -271,6 +272,8 @@ export function validateComponentName (name: string) {
 /**
  * Ensure all props option syntax are normalized into the
  * Object-based format.
+ * *确保将所有props选项语法规范化为
+ * 基于对象的格式。
  */
 function normalizeProps (options: Object, vm: ?Component) {
   const props = options.props
@@ -293,7 +296,7 @@ function normalizeProps (options: Object, vm: ?Component) {
       val = props[key]
       name = camelize(key)
       res[name] = isPlainObject(val)
-        ? val
+        ? val     
         : { type: val }
     }
   } else if (process.env.NODE_ENV !== 'production') {
@@ -367,6 +370,7 @@ export function mergeOptions (
   child: Object,
   vm?: Component
 ): Object {
+  // 开发环境,验证组件名称是否合法
   if (process.env.NODE_ENV !== 'production') {
     checkComponents(child)
   }
@@ -374,7 +378,7 @@ export function mergeOptions (
   if (typeof child === 'function') {
     child = child.options
   }
-
+  // 格式化porps
   normalizeProps(child, vm)
   normalizeInject(child, vm)
   normalizeDirectives(child)

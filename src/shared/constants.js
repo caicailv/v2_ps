@@ -5,7 +5,7 @@ export const ASSET_TYPES = [
   'directive',
   'filter'
 ]
-
+//  lifecycle -> 生命周期
 export const LIFECYCLE_HOOKS = [
   'beforeCreate',
   'created',

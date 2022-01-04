@@ -8,7 +8,7 @@ import { initAssetRegisters } from './assets'
 import { set, del } from '../observer/index'
 import { ASSET_TYPES } from 'shared/constants'
 import builtInComponents from '../components/index'
-
+asset types
 import {
   warn,
   extend,
@@ -53,6 +53,15 @@ export function initGlobalAPI (Vue: GlobalAPI) {
   // components with in Weex's multi-instance scenarios.
   // this is used to identify the "base" constructor to extend all plain-object
   // components with in Weex's multi-instance scenarios.
+  
+  // 这用于标识扩展所有普通对象的“基本”构造函数
+  // 在Weex的多实例场景中使用的组件。
+  // 这用于标识扩展所有普通对象的“基本”构造函数
+  // 在Weex的多实例场景中使用的组件。
+  
+  
+  
+  
   Vue.options._base = Vue
 
   extend(Vue.options.components, builtInComponents)
