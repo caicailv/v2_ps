@@ -412,6 +412,9 @@ export function mergeOptions (
  * Resolve an asset.
  * This function is used because child instances need access
  * to assets defined in its ancestor chain.
+ * *解决一项资产。
+ * 使用此函数是因为子实例需要访问
+ * 到在其祖先链中定义的资产。
  */
 export function resolveAsset (
   options: Object,

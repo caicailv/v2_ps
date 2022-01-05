@@ -69,5 +69,6 @@ export function initGlobalAPI (Vue: GlobalAPI) {
   initUse(Vue)
   initMixin(Vue)
   initExtend(Vue)
+  // 注册一些方法(Vue.component,Vue.filter,Vue.directive)
   initAssetRegisters(Vue)
 }
