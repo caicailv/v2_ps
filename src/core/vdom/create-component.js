@@ -28,7 +28,7 @@ import {
 } from '../instance/lifecycle'
 
 import {
-  isRecyclableComponent,v 
+  isRecyclableComponent,
   renderRecyclableComponentTemplate
 } from 'weex/runtime/recycle-list/render-component-template'
 
@@ -128,7 +128,7 @@ export function createComponent (
     return
   }
 
-  // async component 
+  // async component
   let asyncFactory
   // 加载异步组件
   if (isUndef(Ctor.cid)) {
