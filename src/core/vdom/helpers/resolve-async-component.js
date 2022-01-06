@@ -42,6 +42,7 @@ export function resolveAsyncComponent (
   baseCtor: Class<Component>,
   context: Component
 ): Class<Component> | void {
+  
   if (isTrue(factory.error) && isDef(factory.errorComp)) {
     return factory.errorComp
   }
@@ -60,7 +61,6 @@ export function resolveAsyncComponent (
   } else {
     const contexts = factory.contexts = [context]
     let sync = true
-
     const forceRender = () => {
       for (let i = 0, l = contexts.length; i < l; i++) {
         contexts[i].$forceUpdate()

@@ -38,15 +38,19 @@ render 函数最终会调用 createElement 来创建 Vnode
 Vue.\_update 是一个 vue 私有函数,vue 初始化,和每次 render 时,都会调用 update,
 \_update 内部会调用 `Vue.__patch__`方法来做更新 dom 操作, 这个 patch,在不同的平台下,可以是不同的更新 api(weex),在 web 平台时,使用浏览器操作 dom 的 api 来更新 dom,`/src/platforms/web/runtime/patch`中,通过`createPatchFunction`方法来返回一个新的`patch函数`,
 
+### patch 的整体流程
 
-### patch的整体流程
-createComponent -> 子组件初始化, ->子组件render -> 子组件patch,
+createComponent -> 子组件初始化, ->子组件 render -> 子组件 patch,
 
-### Vue.options._base
-`Vue.options._base`是vue的构造函数
+### Vue.options.\_base
+
+`Vue.options._base`是 vue 的构造函数
 
 
-
+### 加载异步组件三种方式
+工厂模式
+promise模式
+高阶异步组件
 
 ### get 到的一些小知识点
 
@@ -92,24 +96,44 @@ export const patch: Function = createPatchFunction({ nodeOps, modules });
 ```
 
 4. 驼峰化字符串
+
 ```js
-  // keep-live   ->     keepLive
-  // 这里replace传的函数的参数 ,  与\w是否加括号有关
-const camelizeRE = /-(\w)/g
+// keep-live   ->     keepLive
+// 这里replace传的函数的参数 ,  与\w是否加括号有关
+const camelizeRE = /-(\w)/g;
 const camelize = (str) => {
-  console.log('str->', str)
-  return str.replace(camelizeRE, (_, c) => (c ? c.toUpperCase() : ''))
-}
+  console.log("str->", str);
+  return str.replace(camelizeRE, (_, c) => (c ? c.toUpperCase() : ""));
+};
 
 // 对该函数的缓存
 
 function cached(fn) {
-  const cache = Object.create(null)
+  const cache = Object.create(null);
   return function (str) {
-    if (cache[str]) return cache[str]
-    return (cache[str] = fn(str))
-  }
+    if (cache[str]) return cache[str];
+    return (cache[str] = fn(str));
+  };
 }
-const camelizeCached = cached(camelize)
+const camelizeCached = cached(camelize);
+```
 
+5. 实现一个函数,使传入函数只能执行一次
+
+```js
+function once(fn) {
+  let called = false;
+  return function () {
+    if (!called) {
+      called = true;
+      fn.apply(this, arguments);
+    }
+  };
+}
+let add = (x, y) => {
+  console.log(x + y);
+};
+let t = once(add);
+t(5, 6); //11
+t(7 + 7); //undefined
 ```
