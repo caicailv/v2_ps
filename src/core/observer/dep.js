@@ -45,6 +45,9 @@ export default class Dep {
 // the current target watcher being evaluated.
 // this is globally unique because there could be only one
 // watcher being evaluated at any time.
+//正在评估的当前目标监视程序。
+//这是全球唯一的，因为可能只有一个
+//随时评估观察者。
 Dep.target = null
 const targetStack = []
 

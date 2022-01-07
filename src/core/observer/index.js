@@ -117,7 +117,7 @@ export function observe (value: any, asRootData: ?boolean): Observer | void {
     return
   }
   let ob: Observer | void
-  // 判断是否
+  // 判断 如果已经建听过,则使用原来的observer
   if (hasOwn(value, '__ob__') && value.__ob__ instanceof Observer) {
     ob = value.__ob__
   } else if (

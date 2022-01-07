@@ -22,6 +22,7 @@ let index = 0
 
 /**
  * Reset the scheduler's state.
+ * *重置计划程序的状态。
  */
 function resetSchedulerState () {
   index = queue.length = activatedChildren.length = 0
@@ -34,6 +35,7 @@ function resetSchedulerState () {
 
 /**
  * Flush both queues and run the watchers.
+ * *刷新两个队列并运行观察程序。
  */
 function flushSchedulerQueue () {
   flushing = true
@@ -47,6 +49,16 @@ function flushSchedulerQueue () {
   //    user watchers are created before the render watcher)
   // 3. If a component is destroyed during a parent component's watcher run,
   //    its watchers can be skipped.
+
+
+  //刷新前对队列进行排序。
+  //这可确保：
+  // 1. 组件从父级更新到子级。（因为父母总是
+  //在子对象之前创建）
+  // 2. 组件的用户观察程序在其渲染观察程序之前运行（因为
+  //用户观察程序在渲染观察程序之前创建）
+  // 3. 如果某个组件在父组件的观察程序运行期间被销毁，
+  //它的观察者可以跳过。
   queue.sort((a, b) => a.id - b.id)
 
   // do not cache length because more watchers might be pushed
@@ -60,6 +72,7 @@ function flushSchedulerQueue () {
     has[id] = null
     watcher.run()
     // in dev build, check and stop circular updates.
+    //在开发人员构建中，检查并停止循环更新。
     if (process.env.NODE_ENV !== 'production' && has[id] != null) {
       circular[id] = (circular[id] || 0) + 1
       if (circular[id] > MAX_UPDATE_COUNT) {
@@ -126,6 +139,9 @@ function callActivatedHooks (queue) {
  * Push a watcher into the watcher queue.
  * Jobs with duplicate IDs will be skipped unless it's
  * pushed when the queue is being flushed.
+ * *将观察者推入观察者队列。
+*具有重复ID的作业将被跳过，除非
+*在刷新队列时推送。
  */
 export function queueWatcher (watcher: Watcher) {
   const id = watcher.id
@@ -136,6 +152,8 @@ export function queueWatcher (watcher: Watcher) {
     } else {
       // if already flushing, splice the watcher based on its id
       // if already past its id, it will be run next immediately.
+      // 如果已经刷新，则根据其id拼接观察程序
+      // 如果已经超过了它的id，它将立即运行。
       let i = queue.length - 1
       while (i > index && queue[i].id > watcher.id) {
         i--

@@ -101,7 +101,7 @@ export default class Watcher {
     } else {
       this.value = this.get()
     }
-  }
+  } 
 
   /**
    * Evaluate the getter, and re-collect dependencies.

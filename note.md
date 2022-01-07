@@ -52,6 +52,20 @@ createComponent -> 子组件初始化, ->子组件 render -> 子组件 patch,
 promise模式
 高阶异步组件
 
+
+### Vue中的几个概念
+#### vnode 
+  用于模拟真实dom的一个数据结构,和真实dom对应,并且组件也有其专用的vnode
+#### watcher
+  用于监听数据变化的数据结构,当数据变化时,watcher会被执行,然后会触发vue的update,进而触发patch,然后更新dom
+#### dep
+  dep是watcher和每个响应式数据的桥梁
+  当响应式数据变化时,dep会触发对应的watcher
+  
+
+2. watcher
+3. dep
+
 ### get 到的一些小知识点
 
 1.可以直接引入文件,并导出引入的文件暴露的东西
