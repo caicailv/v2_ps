@@ -66,6 +66,14 @@ promise模式
 2. watcher
 3. dep
 
+#### nextTick
+vue中,采用了逐步降级的方式来实现nextTick
+当前环境,如果存在`setImmdiate`,则使用`setImmdiate`,
+否则判断是否存在`MessageChannel`,存在则使用
+
+`nextTick`在vue中有两种使用方式,`Vue.nextTick`(静态方法)
+`this.$nextTick`,组件中使用
+
 ### get 到的一些小知识点
 
 1.可以直接引入文件,并导出引入的文件暴露的东西
@@ -151,3 +159,14 @@ let t = once(add);
 t(5, 6); //11
 t(7 + 7); //undefined
 ```
+
+6. 对数组浅拷贝
+```js
+  arr.slice(0)
+
+```
+7. 清空一个数组的不同方式
+arr = []; 与 arr.length = 0; 的区别
+arr=[] 创建一个新的数组，并将对它的引用分配给变量。任何其他引用不受影响，但仍指向原始数组
+
+arr.length = 0 修改数组本身。如果通过不同的变量访问它，那么仍然可以获得修改后的数组
