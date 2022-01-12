@@ -137,6 +137,7 @@ export function observe (value: any, asRootData: ?boolean): Observer | void {
 
 /**
  * Define a reactive property on an Object.
+ * *在对象上定义反应特性。
  */
 export function defineReactive (
   obj: Object,
@@ -210,7 +211,7 @@ export function set (target: Array<any> | Object, key: any, val: any): any {
   }
   if (Array.isArray(target) && isValidArrayIndex(key)) {
     target.length = Math.max(target.length, key)
-    target.splice(key, 1, val)
+    target.splice(key, 1, val) 
     return val
   }
   if (key in target && !(key in Object.prototype)) {

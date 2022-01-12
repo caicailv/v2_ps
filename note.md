@@ -63,9 +63,6 @@ promise模式
   当响应式数据变化时,dep会触发对应的watcher
   
 
-2. watcher
-3. dep
-
 #### nextTick
 vue中,采用了逐步降级的方式来实现nextTick
 当前环境,如果存在`setImmdiate`,则使用`setImmdiate`,

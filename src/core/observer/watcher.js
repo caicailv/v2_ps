@@ -72,7 +72,7 @@ export default class Watcher {
     this.cb = cb
     this.id = ++uid // uid for batching
     this.active = true
-    this.dirty = this.computed // for computed watchers
+    this.dirty = this.computed // for computed watchers 计算属性 观察者
     this.deps = []
     this.newDeps = []
     this.depIds = new Set()
@@ -176,6 +176,10 @@ export default class Watcher {
       // It initializes as lazy by default, and only becomes activated when
       // it is depended on by at least one subscriber, which is typically
       // another computed property or a component's render function.
+      // 计算属性观察程序有两种模式：惰性模式和激活模式。
+      // 默认情况下，它初始化为lazy，只有在
+      // 它依赖于至少一个订阅者，这通常是
+      // 另一个计算属性或组件的渲染函数。
       if (this.dep.subs.length === 0) {
         // In lazy mode, we don't want to perform computations until necessary,
         // so we simply mark the watcher as dirty. The actual computation is
@@ -186,6 +190,7 @@ export default class Watcher {
         // In activated mode, we want to proactively perform the computation
         // but only notify our subscribers when the value has indeed changed.
         this.getAndInvoke(() => {
+          // 这个函数的作用是通知渲染watcher重新渲染
           this.dep.notify()
         })
       }
@@ -235,7 +240,10 @@ export default class Watcher {
   /**
    * Evaluate and return the value of the watcher.
    * This only gets called for computed property watchers.
+   * *计算并返回观察者的值。
+   * 这仅对计算属性观察器调用。
    */
+  
   evaluate () {
     if (this.dirty) {
       this.value = this.get()
@@ -246,6 +254,7 @@ export default class Watcher {
 
   /**
    * Depend on this watcher. Only for computed property watchers.
+   * *依靠这个观察者。仅适用于计算属性观察者。
    */
   depend () {
     if (this.dep && Dep.target) {
