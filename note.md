@@ -62,6 +62,9 @@ promise模式
   dep是watcher和每个响应式数据的桥梁
   当响应式数据变化时,dep会触发对应的watcher
   
+### 响应式原理
+![img](/img/2.png)
+每个响应式数据(data,props) 都会存在一个`dep`对象,若响应式对象的子组件
 
 #### nextTick
 vue中,采用了逐步降级的方式来实现nextTick
