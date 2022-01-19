@@ -74,6 +74,9 @@ vue中,采用了逐步降级的方式来实现nextTick
 `nextTick`在vue中有两种使用方式,`Vue.nextTick`(静态方法)
 `this.$nextTick`,组件中使用
 
+
+### vue props中,如果default是个对象或数组,必须使用工厂函数返回该对象/数组
+
 ### get 到的一些小知识点
 
 1.可以直接引入文件,并导出引入的文件暴露的东西
