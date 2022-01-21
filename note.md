@@ -179,4 +179,4 @@ arr.length = 0 修改数组本身。如果通过不同的变量访问它，那�
 
 ### vue 编译的核心
 1. 通过parse将template+options 编译成ast
-2. 
+2. optimize 对ast进行标记
