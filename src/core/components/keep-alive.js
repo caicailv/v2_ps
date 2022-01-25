@@ -101,6 +101,8 @@ export default {
       const key: ?string = vnode.key == null
         // same constructor may get registered as different local components
         // so cid alone is not enough (#3269)
+        //同一个构造函数可能会注册为不同的本地组件
+        //所以光靠cid是不够的（#3269）
         ? componentOptions.Ctor.cid + (componentOptions.tag ? `::${componentOptions.tag}` : '')
         : vnode.key
       if (cache[key]) {

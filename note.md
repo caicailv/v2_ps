@@ -180,3 +180,18 @@ arr.length = 0 修改数组本身。如果通过不同的变量访问它，那�
 ### vue 编译的核心
 1. 通过parse将template+options 编译成ast
 2. optimize 对ast进行标记
+
+
+### v-model 实现原理
+```js
+
+<template>
+<input v-model="msg" />
+</template>
+// 相当于
+<template>
+<input :value="msg" @input="msg=$event.target.value"  />
+</template>
+// vue编译时内部自动处理了这个语法糖
+```
+
